@@ -38,8 +38,21 @@ pluginManagement {
 }
 
 plugins {
-	id "io.spring.develocity.conventions" version "0.0.22"
+    id "com.gradle.develocity" version "4.2.1"
+    id "com.gradle.common-custom-user-data-gradle-plugin" version "2.4.0"
 	id "org.springframework.boot.cycle-detection"
+}
+
+develocity {
+    server = "https://ge-build-cache-dogfooding.grdev.net"
+    edgeDiscovery = true
+    buildScan {
+        uploadInBackground = false
+    }
+}
+
+buildCache {
+    remote(develocity.buildCache)
 }
 
 rootProject.name="spring-boot-build"
